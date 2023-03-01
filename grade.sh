@@ -12,7 +12,7 @@ if [[ -f "ListExamples.java" ]]
 then
     echo "File ListExamples.java found"
 else
-    echo "File ListExamples.java not found"
+    echo "File ListExamples.java not found. Check that the file is stored in the current working directory."
     exit 1
 fi
 
@@ -24,13 +24,14 @@ cp TestListExamples.java $TEST
 cd $TEST
 
 javac -cp $CPATH *.java
-echo "Compiled classes"
 
 if [[ $? -ne 0 ]]
 then
-    echo "Compile error"
+    echo "Compile error: Please fix the error shown above!"
     exit 1
 fi
+
+echo "Compiled classes"
 
 java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > results.txt
 echo "Ran tests"
